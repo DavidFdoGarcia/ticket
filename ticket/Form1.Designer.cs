@@ -34,6 +34,7 @@
             System.Windows.Forms.Label descripcionLabel;
             System.Windows.Forms.Label codigoLabel;
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -58,7 +59,6 @@
             this.productoTableAdapter = new ticket.ticketDataSetTableAdapters.productoTableAdapter();
             this.tableAdapterManager = new ticket.ticketDataSetTableAdapters.TableAdapterManager();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.button1 = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             productoLabel = new System.Windows.Forms.Label();
             precioLabel = new System.Windows.Forms.Label();
@@ -136,6 +136,16 @@
             this.groupBox1.Text = "Tickets";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(914, 83);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 68);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Guardar Codigo";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -161,6 +171,7 @@
             this.btnSalir.TabIndex = 17;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnModificar
             // 
@@ -229,6 +240,7 @@
             this.productoTextBox.Name = "productoTextBox";
             this.productoTextBox.Size = new System.Drawing.Size(178, 20);
             this.productoTextBox.TabIndex = 4;
+            this.productoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.productoTextBox_KeyPress);
             // 
             // productoBindingSource
             // 
@@ -247,6 +259,7 @@
             this.precioTextBox.Name = "precioTextBox";
             this.precioTextBox.Size = new System.Drawing.Size(178, 20);
             this.precioTextBox.TabIndex = 6;
+            this.precioTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.precioTextBox_KeyPress);
             // 
             // descripcionTextBox
             // 
@@ -255,6 +268,7 @@
             this.descripcionTextBox.Name = "descripcionTextBox";
             this.descripcionTextBox.Size = new System.Drawing.Size(178, 20);
             this.descripcionTextBox.TabIndex = 8;
+            this.descripcionTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.descripcionTextBox_KeyPress);
             // 
             // codigoTextBox
             // 
@@ -263,9 +277,12 @@
             this.codigoTextBox.Name = "codigoTextBox";
             this.codigoTextBox.Size = new System.Drawing.Size(178, 20);
             this.codigoTextBox.TabIndex = 10;
+            this.codigoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.codigoTextBox_KeyPress);
             // 
             // productoDataGridView
             // 
+            this.productoDataGridView.AllowUserToAddRows = false;
+            this.productoDataGridView.AllowUserToDeleteRows = false;
             this.productoDataGridView.AutoGenerateColumns = false;
             this.productoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.productoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -277,6 +294,7 @@
             this.productoDataGridView.DataSource = this.productoBindingSource;
             this.productoDataGridView.Location = new System.Drawing.Point(6, 33);
             this.productoDataGridView.Name = "productoDataGridView";
+            this.productoDataGridView.ReadOnly = true;
             this.productoDataGridView.Size = new System.Drawing.Size(554, 310);
             this.productoDataGridView.TabIndex = 0;
             // 
@@ -285,30 +303,35 @@
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
             this.dataGridViewTextBoxColumn1.HeaderText = "Id";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "Producto";
             this.dataGridViewTextBoxColumn2.HeaderText = "Producto";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "Precio";
             this.dataGridViewTextBoxColumn3.HeaderText = "Precio";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "Descripcion";
             this.dataGridViewTextBoxColumn4.HeaderText = "Descripcion";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "codigo";
             this.dataGridViewTextBoxColumn5.HeaderText = "codigo";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // productoTableAdapter
             // 
@@ -319,16 +342,6 @@
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.productoTableAdapter = this.productoTableAdapter;
             this.tableAdapterManager.UpdateOrder = ticket.ticketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(914, 83);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 68);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "Guardar Codigo";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Form1
             // 

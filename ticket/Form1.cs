@@ -31,6 +31,7 @@ namespace ticket
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            productoTextBox.Focus();
             // TODO: esta línea de código carga datos en la tabla 'ticketDataSet.producto' Puede moverla o quitarla según sea necesario.
             this.productoTableAdapter.Fill(this.ticketDataSet.producto);
 
@@ -41,11 +42,36 @@ namespace ticket
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //Insertar
         {
-            this.productoTableAdapter.Insertar(productoTextBox.Text, precioTextBox.Text, descripcionTextBox.Text, codigoTextBox.Text);
-            this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+
+            if (string.IsNullOrEmpty(productoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Inserte el nombre del producto");
+                productoTextBox.Focus();
+            }
+            else if (string.IsNullOrEmpty(precioTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Inserte el precio del producto");
+                precioTextBox.Focus();
+            }
+            else if (string.IsNullOrEmpty(descripcionTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Inserte la descripción del producto");
+                descripcionTextBox.Focus();
+            }
+            else if (string.IsNullOrEmpty(codigoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Inserte el código del producto");
+                codigoTextBox.Focus();
+            }
+            else
+            {
+                this.productoTableAdapter.Insertar(productoTextBox.Text, precioTextBox.Text, descripcionTextBox.Text, codigoTextBox.Text);
+                this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+            }
         }
+            
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -91,8 +117,8 @@ namespace ticket
             //e.Graphics.DrawString(pictureBox1, font, Brushes.Black, new Rectangle(0, y += 20, width, 20));
 
             Image img = Image.FromFile(imagen);
-                e.Graphics.DrawImage(img, new Rectangle (10, y += 20, 180, 180));
-       }
+            e.Graphics.DrawImage(img, new Rectangle(10, y += 20, 180, 180));
+        }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -107,5 +133,156 @@ namespace ticket
                 varbmp.Save(varimg, ImageFormat.Jpeg);
             }
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Esta seguro de que decea salir? ", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        // --------------------------------------------------------------------------- //
+        // --------------------------------------------------------------------------- //
+        // --------------------Inicio de los eventos para insertar -------------------- //
+        // --------------------------------------------------------------------------- //
+        // --------------------------------------------------------------------------- //
+
+        private void codigoTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                if (string.IsNullOrEmpty(productoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el nombre del producto");
+                    productoTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(precioTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el precio del producto");
+                    precioTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(descripcionTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte la descripción del producto");
+                    descripcionTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(codigoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el código del producto");
+                    codigoTextBox.Focus();
+                }
+                else
+                {
+                    this.productoTableAdapter.Insertar(productoTextBox.Text, precioTextBox.Text, descripcionTextBox.Text, codigoTextBox.Text);
+                    this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+                }
+            }
+
+
+        }
+
+        private void productoTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                if (string.IsNullOrEmpty(productoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el nombre del producto");
+                    productoTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(precioTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el precio del producto");
+                    precioTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(descripcionTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte la descripción del producto");
+                    descripcionTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(codigoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el código del producto");
+                    codigoTextBox.Focus();
+                }
+                else
+                {
+                    this.productoTableAdapter.Insertar(productoTextBox.Text, precioTextBox.Text, descripcionTextBox.Text, codigoTextBox.Text);
+                    this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+                }
+            }
+        }
+
+        private void precioTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                if (string.IsNullOrEmpty(productoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el nombre del producto");
+                    productoTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(precioTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el precio del producto");
+                    precioTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(descripcionTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte la descripción del producto");
+                    descripcionTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(codigoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el código del producto");
+                    codigoTextBox.Focus();
+                }
+                else
+                {
+                    this.productoTableAdapter.Insertar(productoTextBox.Text, precioTextBox.Text, descripcionTextBox.Text, codigoTextBox.Text);
+                    this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+                }
+            }
+        }
+
+        private void descripcionTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                if (string.IsNullOrEmpty(productoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el nombre del producto");
+                    productoTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(precioTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el precio del producto");
+                    precioTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(descripcionTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte la descripción del producto");
+                    descripcionTextBox.Focus();
+                }
+                else if (string.IsNullOrEmpty(codigoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte el código del producto");
+                    codigoTextBox.Focus();
+                }
+                else
+                {
+                    this.productoTableAdapter.Insertar(productoTextBox.Text, precioTextBox.Text, descripcionTextBox.Text, codigoTextBox.Text);
+                    this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+                }
+            }
+        }
+
+        // --------------------------------------------------------------------------- //
+        // --------------------------------------------------------------------------- //
+        // --------------------Fin de los eventos para insertar -------------------- //
+        // --------------------------------------------------------------------------- //
+        // --------------------------------------------------------------------------- //
+
     }
 }

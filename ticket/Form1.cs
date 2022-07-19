@@ -75,19 +75,45 @@ namespace ticket
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            this.productoTableAdapter.Buscar(ticketDataSet.producto, codigoTextBox.Text);
+            if (string.IsNullOrEmpty(codigoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Inserte un código de producto a buscar");
+                codigoTextBox.Focus();
+            }
+            else 
+            {
+                this.productoTableAdapter.Buscar(ticketDataSet.producto, codigoTextBox.Text);
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            this.productoTableAdapter.Eliminar(codigoTextBox.Text);
-            this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+            if (string.IsNullOrEmpty(codigoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Inserte un código de producto a eliminar");
+                codigoTextBox.Focus();
+            }
+            else
+            {
+                this.productoTableAdapter.Eliminar(codigoTextBox.Text);
+                this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+            }
+            
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            this.productoTableAdapter.Actualizar(productoTextBox.Text, precioTextBox.Text, descripcionTextBox.Text, codigoTextBox.Text, codigoTextBox.Text);
-            this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+            if (string.IsNullOrEmpty(codigoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Inserte un código de producto a Actualizar");
+                codigoTextBox.Focus();
+            }
+            else
+            {
+                this.productoTableAdapter.Actualizar(productoTextBox.Text, precioTextBox.Text, descripcionTextBox.Text, codigoTextBox.Text, codigoTextBox.Text);
+                this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+            }
+          
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
@@ -274,6 +300,61 @@ namespace ticket
                 {
                     this.productoTableAdapter.Insertar(productoTextBox.Text, precioTextBox.Text, descripcionTextBox.Text, codigoTextBox.Text);
                     this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+                }
+            }
+        }
+
+        private void btnBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void btnBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+                
+        }
+
+        private void codigoTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.F2)
+            {
+                if (string.IsNullOrEmpty(codigoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte un código de producto a Actualizar");
+                    codigoTextBox.Focus();
+                }
+                else
+                {
+                    this.productoTableAdapter.Actualizar(productoTextBox.Text, precioTextBox.Text, descripcionTextBox.Text, codigoTextBox.Text, codigoTextBox.Text);
+                    this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+                }
+            }
+
+            /* if (e.KeyCode == Keys.Delete)
+            {
+                if (string.IsNullOrEmpty(codigoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte un código de producto a eliminar");
+                    codigoTextBox.Focus();
+                }
+                else
+                {
+                    this.productoTableAdapter.Eliminar(codigoTextBox.Text);
+                    this.productoTableAdapter.Fill(this.ticketDataSet.producto);
+                }
+            }*/
+
+            if (e.KeyCode == Keys.F1)
+            {
+                if (string.IsNullOrEmpty(codigoTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(productoTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Inserte un código de producto a buscar");
+                    codigoTextBox.Focus();
+                }
+                else
+                {
+                    this.productoTableAdapter.Buscar(ticketDataSet.producto, codigoTextBox.Text);
                 }
             }
         }

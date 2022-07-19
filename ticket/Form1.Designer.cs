@@ -222,6 +222,8 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnBuscar_KeyPress);
+            this.btnBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.btnBuscar_KeyUp);
             // 
             // btnInsertar
             // 
@@ -278,6 +280,7 @@
             this.codigoTextBox.Size = new System.Drawing.Size(178, 20);
             this.codigoTextBox.TabIndex = 10;
             this.codigoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.codigoTextBox_KeyPress);
+            this.codigoTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.codigoTextBox_KeyUp);
             // 
             // productoDataGridView
             // 
@@ -350,7 +353,7 @@
             this.ClientSize = new System.Drawing.Size(1028, 374);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "F1=Buscar ENTER=Agregar  F2=Modificar";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
